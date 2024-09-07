@@ -1,12 +1,14 @@
 <main class="main">
   <div class="content">
+    @for (course of courses; track course.id) {
     <app-course-card
       (courseSelected)="onCourseSelected($event)"
-      [course]="coreCourse"
+      [course]="course"
     ></app-course-card>
-    <app-course-card [course]="rjxCourse"></app-course-card>
-    <app-course-card [course]="ngrxCourse"></app-course-card>
+
+    }@empty {
+    <h1>No Course found</h1>
+    }
   </div>
 </main>
-
 <router-outlet />

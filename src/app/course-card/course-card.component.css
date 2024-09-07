@@ -5,6 +5,7 @@
   overflow: hidden;
   width: 300px;
   transition: transform 0.3s ease-in-out;
+  height: 100%;
 }
 
 .card:hover {
