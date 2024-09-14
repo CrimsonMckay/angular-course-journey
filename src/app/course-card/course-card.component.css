@@ -7,7 +7,18 @@
   transition: transform 0.3s ease-in-out;
   height: 100%;
 }
-
+.card-category.beginner {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #c3e4ba;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 .card:hover {
   transform: translateY(-10px);
 }

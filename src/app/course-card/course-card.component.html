@@ -1,7 +1,9 @@
 <div class="card">
   <div class="card-image">
     <img [src]="course.iconUrl" />
-    <div class="card-category">{{ course.category }}</div>
+    <div class="card-category" [ngClass]="cardClasses()">
+      {{ course.category }}
+    </div>
   </div>
   <div class="card-content">
     <h3 class="card-title">{{ course.description }}</h3>
