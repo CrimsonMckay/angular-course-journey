@@ -1,5 +1,12 @@
 <main class="main">
   <div class="content">
+    <!-- <div class="demo">
+      <p>{{ startDate | date : "MMM/dd/yyyy" }}</p>
+      <h1>{{ title | uppercase }}</h1>
+      <h2>{{ price | number : "3.3-5" }}</h2>
+      <h3>{{ price | currency }}</h3>
+  
+    </div> -->
     @for (course of courses; track course.id) {
     <app-course-card
       (courseSelected)="onCourseSelected($event)"
