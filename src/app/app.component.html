@@ -1,4 +1,8 @@
 <main class="main">
+  <!-- <div class="demo-triggers">
+    <input placeholder="Type to trigger prefetch" #prefetch />
+    <button #display>Trigger Display</button>
+  </div> -->
   <div class="content">
     <!-- <div class="demo">
       <p>{{ startDate | date : "MMM/dd/yyyy" }}</p>
@@ -7,14 +11,23 @@
       <h3>{{ price | currency }}</h3>
   
     </div> -->
-    @for (course of courses; track course.id) {
+    <!-- @defer(on idle;prefetch on idle)
+    @defer(on immediate;prefetch on idle) -->
+    <!-- https://angular.dev/guide/templates/defer#idle -->
+
+    @defer{ @for
+    (course of courses; track course.id) {
     <app-course-card
       (courseSelected)="onCourseSelected($event)"
       [course]="course"
     ></app-course-card>
+    } } @placeholder {
+    <p>Placeholder content</p>
+    }@loading {
+    <h2>this is a loading indicator</h2>
+    } @error {
+    <h3>An error occurred/</h3>
 
-    }@empty {
-    <h1>No Course found</h1>
     }
   </div>
 </main>
