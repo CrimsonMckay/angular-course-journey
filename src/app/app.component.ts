@@ -1,5 +1,13 @@
 import { COURSES } from './../../db-data';
-import { AfterViewInit, Component, ElementRef, ViewChild, viewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  QueryList,
+  ViewChild,
+  viewChild,
+  ViewChildren,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CourseCardComponent } from './course-card/course-card.component';
 
@@ -13,27 +21,32 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent implements AfterViewInit {
   courses = COURSES;
   //learning pipes
   title = COURSES[0].description;
   price = 9.99;
   startDate = new Date(2000, 0, 1);
 
-  @ViewChild('cardRef', { read: ElementRef })
-  card!: CourseCardComponent;
+  @ViewChildren(CourseCardComponent, { read: ElementRef })
+  card!: QueryList<CourseCardComponent>;
 
-  @ViewChild('container')
-  containerDiv!: ElementRef;
-
-  constructor() {
-    console.log("lifeCycle",this.card);
+  constructor() {}
+  ngAfterViewInit(): void {
+    this.card.changes.subscribe((card) => console.log(card));
   }
-  ngAfterViewInit() {
-    console.log("lifeCycle",this.card);
+  onAddCourse() {
+    this.courses.push({
+      id: 9,
+      description: 'Angular Architecture Course',
+      longDescription:
+        'Learn the core RxJs Observable Pattern as well and many other Design Patterns for building Reactive Angular Applications.',
+      iconUrl:
+        'https://s3-us-west-1.amazonaws.com/angular-academy/blog/images/rxjs-reactive-patterns-small.png',
+      category: 'BEGINNER',
+    });
   }
-
-  onCourseSelected(course : Course) {
+  onCourseSelected(course: Course) {
     //console.log('App-component-triggered from card view', this.card);
     console.log(this.card);
   }

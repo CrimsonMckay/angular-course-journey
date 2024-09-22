@@ -3,6 +3,7 @@
     <input placeholder="Type to trigger prefetch" #prefetch />
     <button #display>Trigger Display</button>
   </div> -->
+  <button (click)="onAddCourse()">Add Course</button>
   <div class="content" #container>
     <!-- <div class="demo">
       <p>{{ startDate | date : "MMM/dd/yyyy" }}</p>
@@ -16,15 +17,9 @@
     <!-- https://angular.dev/guide/templates/defer#idle -->
 
     <app-course-card
-      #cardRef
+      *ngFor="let course of courses"
       (courseSelected)="onCourseSelected($event)"
-      [course]="courses[0]"
-    ></app-course-card>
-
-    <app-course-card
-      #cardRef1
-      (courseSelected)="onCourseSelected($event)"
-      [course]="courses[1]"
+      [course]="course"
     ></app-course-card>
   </div>
 </main>
