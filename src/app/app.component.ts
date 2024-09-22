@@ -1,5 +1,5 @@
 import { COURSES } from './../../db-data';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, viewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CourseCardComponent } from './course-card/course-card.component';
 
@@ -20,8 +20,13 @@ export class AppComponent {
   price = 9.99;
   startDate = new Date(2000, 0, 1);
 
+  @ViewChild('cardRef', { read: ElementRef })
+  card!: CourseCardComponent;
 
+  @ViewChild('container')
+  containerDiv!: ElementRef;
   onCourseSelected(course: Course) {
-    console.log('App-component-triggered from card view', course);
+    //console.log('App-component-triggered from card view', this.card);
+    console.log(this.card);
   }
 }

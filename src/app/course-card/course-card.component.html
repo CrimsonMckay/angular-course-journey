@@ -2,7 +2,7 @@
   <div class="card-image">
     <img [src]="course.iconUrl" />
     <div class="card-category" [ngClass]="cardClasses()">
-      {{ course.category }}
+      {{cardIndex || +''+ course.category }}
     </div>
   </div>
   <div class="card-content">
