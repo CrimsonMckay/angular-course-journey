@@ -1,5 +1,5 @@
 import { COURSES } from './../../db-data';
-import { Component, ElementRef, ViewChild, viewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, viewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CourseCardComponent } from './course-card/course-card.component';
 
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
   courses = COURSES;
   //learning pipes
   title = COURSES[0].description;
@@ -25,7 +25,15 @@ export class AppComponent {
 
   @ViewChild('container')
   containerDiv!: ElementRef;
-  onCourseSelected(course: Course) {
+
+  constructor() {
+    console.log("lifeCycle",this.card);
+  }
+  ngAfterViewInit() {
+    console.log("lifeCycle",this.card);
+  }
+
+  onCourseSelected(course : Course) {
     //console.log('App-component-triggered from card view', this.card);
     console.log(this.card);
   }
